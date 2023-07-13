@@ -3,8 +3,11 @@
 Las tecnicas que se utilizan son:
 ### KD-tree
 Es una estructura de datos de árbol binario que organiza puntos en un espacio multidimensional. En cada nivel del árbol, se divide el espacio en dos hiperplanos mediante un hiperplano ortogonal a uno de los ejes.
+
 Esto permite un rápido descarte de regiones del espacio que no contienen los vecinos más cercanos buscados.Cuando se utiliza el algoritmo KNN con KD-trees, el árbol se construye utilizando los puntos de entrenamiento como nodos del árbol. Luego, durante la fase de búsqueda, se recorre el árbol de manera eficiente para encontrar los vecinos más cercanos a un punto objetivo.
+
 El uso de KD-trees puede reducir significativamente el tiempo de búsqueda de vecinos más cercanos en comparación con un enfoque de fuerza bruta que compara todos los puntos entre sí. Sin embargo, es importante tener en cuenta que la eficiencia del KD-tree puede verse afectada por la dimensionalidad del espacio y la distribución de los puntos.Además del KD-tree, existen otras estructuras de datos que se pueden utilizar para acelerar la búsqueda de vecinos más cercanos en el algoritmo KNN, como los Ball Trees, los Cover Trees y los VP-Trees, entre otros. 
+
 Cada una de estas estructuras tiene sus propias características y trade-offs en términos de tiempo de construcción del árbol y tiempo de búsqueda, por lo que la elección de la estructura adecuada depende del contexto y los requisitos específicos de la aplicación.
 Como se realiza el KNN Search y el Range Search (si es que lo soporta)
 
