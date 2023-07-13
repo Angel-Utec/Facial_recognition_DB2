@@ -1,6 +1,5 @@
 # Proyecto 3 de Base de datos
 ## Librerías utilizadas
-Describa la técnica de indexación de las librerías utilizadas:
 Las tecnicas que se utilizan son:
 - El KD-tree es una estructura de datos de árbol binario que organiza puntos en un espacio multidimensional. En cada nivel del árbol, se divide el espacio en dos hiperplanos mediante un hiperplano ortogonal a uno de los ejes. Esto permite un rápido descarte de regiones del espacio que no contienen los vecinos más cercanos buscados.
 
