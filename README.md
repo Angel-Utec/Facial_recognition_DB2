@@ -12,7 +12,7 @@ Cada una de estas estructuras tiene sus propias características y trade-offs en
 Como se realiza el KNN Search y el Range Search (si es que lo soporta)
 
 ### R-tree
-se aplican técnicas y estrategias adicionales para mitigar los efectos de la maldición de la dimensionalidad y mejorar la eficiencia de la búsqueda. Algunas de las técnicas comunes utilizadas en KNN-HighD son:
+Se aplican técnicas y estrategias adicionales para mitigar los efectos de la maldición de la dimensionalidad y mejorar la eficiencia de la búsqueda. Algunas de las técnicas comunes utilizadas en KNN-HighD son:
 
 - Reducción de dimensionalidad: Se utilizan técnicas de reducción de dimensionalidad, como el Análisis de Componentes Principales (PCA), para proyectar los datos de alta dimensionalidad en un espacio de menor dimensión. Esto ayuda a preservar la estructura y las relaciones entre los datos, al tiempo que reduce la dimensionalidad, lo que puede facilitar la búsqueda de vecinos más cercanos.
 
