@@ -6,13 +6,13 @@ Como se realiza el KNN Search y el Range Search (si es que lo soporta)
 
 - El R-tree se aplican técnicas y estrategias adicionales para mitigar los efectos de la maldición de la dimensionalidad y mejorar la eficiencia de la búsqueda. Algunas de las técnicas comunes utilizadas en KNN-HighD son:
 
-Reducción de dimensionalidad: Se utilizan técnicas de reducción de dimensionalidad, como el Análisis de Componentes Principales (PCA), para proyectar los datos de alta dimensionalidad en un espacio de menor dimensión. Esto ayuda a preservar la estructura y las relaciones entre los datos, al tiempo que reduce la dimensionalidad, lo que puede facilitar la búsqueda de vecinos más cercanos.
+- Reducción de dimensionalidad: Se utilizan técnicas de reducción de dimensionalidad, como el Análisis de Componentes Principales (PCA), para proyectar los datos de alta dimensionalidad en un espacio de menor dimensión. Esto ayuda a preservar la estructura y las relaciones entre los datos, al tiempo que reduce la dimensionalidad, lo que puede facilitar la búsqueda de vecinos más cercanos.
 
-Estructuras de índice especiales: Se emplean estructuras de datos especializadas, como KD-trees, Ball Trees, o índices basados en grafos, para organizar y acelerar la búsqueda de vecinos más cercanos en espacios de alta dimensión. Estas estructuras de índice están diseñadas para manejar eficientemente los desafíos de la maldición de la dimensionalidad.
+- Estructuras de índice especiales: Se emplean estructuras de datos especializadas, como KD-trees, Ball Trees, o índices basados en grafos, para organizar y acelerar la búsqueda de vecinos más cercanos en espacios de alta dimensión. Estas estructuras de índice están diseñadas para manejar eficientemente los desafíos de la maldición de la dimensionalidad.
 
-Hashing sensible a la localidad: Se utilizan técnicas de hashing, como Locality Sensitive Hashing (LSH), que asignan puntos similares a cubetas cercanas utilizando funciones de hash sensibles a la localidad. Esto permite agrupar puntos similares y facilita la búsqueda de vecinos más cercanos.
+- Hashing sensible a la localidad: Se utilizan técnicas de hashing, como Locality Sensitive Hashing (LSH), que asignan puntos similares a cubetas cercanas utilizando funciones de hash sensibles a la localidad. Esto permite agrupar puntos similares y facilita la búsqueda de vecinos más cercanos.
 
-Aprovechamiento de hardware especializado: Se pueden utilizar implementaciones de KNN-HighD que aprovechan la aceleración en hardware especializado, como GPU (Graphics Processing Unit) para mejorar el rendimiento de la búsqueda en espacios de alta dimensión. Por ejemplo, Faiss es una biblioteca que ofrece índices de GPU eficientes para búsqueda de vecinos más cercanos.
+- Aprovechamiento de hardware especializado: Se pueden utilizar implementaciones de KNN-HighD que aprovechan la aceleración en hardware especializado, como GPU (Graphics Processing Unit) para mejorar el rendimiento de la búsqueda en espacios de alta dimensión. Por ejemplo, Faiss es una biblioteca que ofrece índices de GPU eficientes para búsqueda de vecinos más cercanos.
 
 KNN-HighD combina estas técnicas y estrategias para mejorar la eficiencia de la búsqueda de vecinos más cercanos en espacios de alta dimensión. La elección de las técnicas y la configuración depende del contexto específico, los requisitos de la aplicación y las características de los datos.
 ## Análisis de la maldición de la dimensionalidad y como mitigarlo
