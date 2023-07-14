@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime 
 
 
-database_path='postgresql://postgres:1@localhost:5432/BD23'
+database_path='postgresql://postgres:postgres@localhost:5432/BD23'
 
 #Configuracion
 db=SQLAlchemy()
