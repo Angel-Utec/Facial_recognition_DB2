@@ -74,23 +74,21 @@ def create_app(test_config=None):
         imagen = face_recognition.load_image_file(imagen_res)
         vector = face_recognition.face_encodings(imagen)
         res = backend.knn_sequential(vector,int(top_k),backend.carpeta_salida)
+        codificaciones = tuple(vector[0])
         for distance, file_name in res:
-            nombre = file_name[18:-9]
-            foto_direccion = file_name[18:-4] + ".jpg"
+            nombre = file_name[86:-9]
+            foto_direccion = file_name[86:-4] + ".jpg"
             print(f"Archivo: {file_name}, Distancia: {distance}")
             tipo = "knn"
-            imagen = Imagen(tipo=tipo,nombre=nombre,foto_espec=foto_direccion,distancia=distance)
+            imagen = Imagen(tipo=tipo,nombre=nombre,foto_espec=foto_direccion,distancia=str(-distance))
             imagen.insert()
-        
+        res2 = backend.kntree(codificaciones)
+        res3 = backend.builiding_rtree(codificaciones)
         #selection = Imagen.query.order_by('id').all()
 
         
         return jsonify({
-            'success': True,
-            # 'created': new_imagen_id,
-            # 'tipo': new_imagen_tipo,
-            # 'imagenes': current_images,
-            # 'total_posts': len(selection)
+            'success': True
         })
         
     #Manejo de errores
