@@ -1,31 +1,44 @@
-# Proyecto 3 de Base de datos
+![image](https://github.com/Angel-Utec/proyecto3/assets/91230666/59755e0e-c097-4615-9bc1-0ade3068279b)# Proyecto 3 de Base de datos
 
-Link del video de presentacion del proyecto: https://drive.google.com/drive/folders/10LyXZA-tku7_sNY8uhTdAg_TAUUGABAF?usp=sharing
+Link del video de presentacion del proyecto: Video[https://drive.google.com/drive/folders/10LyXZA-tku7_sNY8uhTdAg_TAUUGABAF?usp=sharing]
 
 ## Librerías utilizadas
 Las tecnicas que se utilizan son:
-### KD-tree
+## Sequential
+En este caso no se utilizo ninguna libreria para calcular las distancias para la tecnica del sequential, ya que como su mismo nombre lo dice este busca de forma secuencial cada imagen, pero si se uso la libreria concurrent.futures para poder paralelizar y optimizar la busqueda lo cual nos favorecio bastante al momento de hacer la busqueda.
+
+Este calculaba la distancia entre cada imagen con la query con la funcion "face.distance" de la libreria "face_recognition", para posterior mandar los datos a un Heap, el cual almacena los resultados y el tamaño del heap
+es conforme al Top-K pasada por el usuario que quiera realizar la busqueda, haciendo que solo quede los "k" imagenes mas cercanas.
+
+## K-tree
+Se utilizo la libreria "rtree" la cual hace uso de indices espaciales, como R-tree, son estructuras de datos que permiten indexar y realizar consultas eficientes sobre objetos espaciales en un espacio multidimensional.
+
+En este caso se itero dentro de los archivos guardados en memoria secundaria para agregar datos al indice,le proporcionamos un identificador único (ID), el cual era un numero del 0 a la cantidad de datos que se estaba utilizando en las diferentes pruebas, y un bounding box (caja delimitadora) que represente la ubicación del objeto en el espacio multidimensional. La caja delimitadora puede ser una lista o tupla que contenga las coordenadas mínimas y máximas del objeto, en este caso contenia el vector de nuestra imagen vectorizada.
+
+Una vez creado el indice solo bastaba con usar la funcion idx.nearest el cual calculaba la distancia entre los parametros que se le otorgaba.
+
+### KD-tree con el metodo de Faiss
+
+Usamos la libreria "Faiss" la cual utiliza un enfoque de construcción de KD-tree llamado "Recursión Mediana". En este enfoque, se selecciona una dimensión (característica) para dividir el espacio en dos mitades, de modo que la mediana de los puntos 
+en esa dimensión se convierte en el punto de corte. Luego, los puntos se distribuyen a ambos lados de la mediana y se construyen dos subárboles para cada mitad. Este proceso se repite recursivamente hasta que cada hoja 
+del árbol contiene solo un punto o hasta que se alcance un tamaño de hoja predeterminado.
 Es una estructura de datos de árbol binario que organiza puntos en un espacio multidimensional. En cada nivel del árbol, se divide el espacio en dos hiperplanos mediante un hiperplano ortogonal a uno de los ejes.
 
-Esto permite un rápido descarte de regiones del espacio que no contienen los vecinos más cercanos buscados.Cuando se utiliza el algoritmo KNN con KD-trees, el árbol se construye utilizando los puntos de entrenamiento como nodos del árbol. Luego, durante la fase de búsqueda, se recorre el árbol de manera eficiente para encontrar los vecinos más cercanos a un punto objetivo.
+Una vez que el KD-tree está construido, es posible realizar búsquedas eficientes de vecinos más cercanos. Para encontrar los vecinos más cercanos a un determinado vector de consulta, el árbol se recorre utilizando un 
+proceso similar a la búsqueda binaria. Comienza en la raíz del árbol y desciende a través de los nodos, eligiendo el subárbol que esté más cerca del vector de consulta en cada paso.
 
-El uso de KD-trees puede reducir significativamente el tiempo de búsqueda de vecinos más cercanos en comparación con un enfoque de fuerza bruta que compara todos los puntos entre sí. Sin embargo, es importante tener en cuenta que la eficiencia del KD-tree puede verse afectada por la dimensionalidad del espacio y la distribución de los puntos.Además del KD-tree, existen otras estructuras de datos que se pueden utilizar para acelerar la búsqueda de vecinos más cercanos en el algoritmo KNN, como los Ball Trees, los Cover Trees y los VP-Trees, entre otros. 
+### Librerias extra usadas:
 
-Cada una de estas estructuras tiene sus propias características y trade-offs en términos de tiempo de construcción del árbol y tiempo de búsqueda, por lo que la elección de la estructura adecuada depende del contexto y los requisitos específicos de la aplicación.
-Como se realiza el KNN Search y el Range Search (si es que lo soporta)
+- matplotlib.pyplot: Para el grafico de las busquedas por rango
+- time: La cual usamos para hacer el calculo de los tiempos de ejecucion
+- face_recognition: Para la vectorizacion de las imagenes y calculo de distancias dentro de la tecnica del sequential
 
-### R-tree
-Se aplican técnicas y estrategias adicionales para mitigar los efectos de la maldición de la dimensionalidad y mejorar la eficiencia de la búsqueda. Algunas de las técnicas comunes utilizadas en KNN-HighD son:
+## Imagenes de nuestra aplicacion:
 
-- Reducción de dimensionalidad: Se utilizan técnicas de reducción de dimensionalidad, como el Análisis de Componentes Principales (PCA), para proyectar los datos de alta dimensionalidad en un espacio de menor dimensión. Esto ayuda a preservar la estructura y las relaciones entre los datos, al tiempo que reduce la dimensionalidad, lo que puede facilitar la búsqueda de vecinos más cercanos.
+[![image.png](https://i.postimg.cc/Hn84nkrR/image.png)](https://postimg.cc/BPs1wscB)
 
-- Estructuras de índice especiales: Se emplean estructuras de datos especializadas, como KD-trees, Ball Trees, o índices basados en grafos, para organizar y acelerar la búsqueda de vecinos más cercanos en espacios de alta dimensión. Estas estructuras de índice están diseñadas para manejar eficientemente los desafíos de la maldición de la dimensionalidad.
+[![image.png](https://i.postimg.cc/JzLgf9gM/image.png)](https://postimg.cc/6yMYR1tm)
 
-- Hashing sensible a la localidad: Se utilizan técnicas de hashing, como Locality Sensitive Hashing (LSH), que asignan puntos similares a cubetas cercanas utilizando funciones de hash sensibles a la localidad. Esto permite agrupar puntos similares y facilita la búsqueda de vecinos más cercanos.
-
-- Aprovechamiento de hardware especializado: Se pueden utilizar implementaciones de KNN-HighD que aprovechan la aceleración en hardware especializado, como GPU (Graphics Processing Unit) para mejorar el rendimiento de la búsqueda en espacios de alta dimensión. Por ejemplo, Faiss es una biblioteca que ofrece índices de GPU eficientes para búsqueda de vecinos más cercanos.
-
-KNN-HighD combina estas técnicas y estrategias para mejorar la eficiencia de la búsqueda de vecinos más cercanos en espacios de alta dimensión. La elección de las técnicas y la configuración depende del contexto específico, los requisitos de la aplicación y las características de los datos.
 ## Análisis de la maldición de la dimensionalidad y como mitigarlo
 La maldición de la dimensionalidad es un desafío que surge cuando trabajamos con conjuntos de datos en espacios de alta dimensión. Se refiere a una serie de problemas que se presentan debido al crecimiento exponencial de la dimensionalidad de los datos y que afectan la eficiencia y la calidad de los resultados en diversas tareas de análisis de datos.
 
@@ -47,22 +60,3 @@ Los metodos para mitigarla son las siguientes:
 
 ### Grafico
 [![Figure-1.png](https://i.postimg.cc/76v35kyW/Figure-1.png)](https://postimg.cc/R3R6Y2h7)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
