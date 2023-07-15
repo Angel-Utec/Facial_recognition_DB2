@@ -1,4 +1,7 @@
 # Proyecto 3 de Base de datos
+
+Link del video de presentacion del proyecto: Video[https://drive.google.com/drive/folders/10LyXZA-tku7_sNY8uhTdAg_TAUUGABAF?usp=sharing]
+
 ## Librerías utilizadas
 Las tecnicas que se utilizan son:
 ### KD-tree
