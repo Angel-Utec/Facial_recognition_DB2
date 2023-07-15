@@ -1,4 +1,4 @@
-![image](https://github.com/Angel-Utec/proyecto3/assets/91230666/59755e0e-c097-4615-9bc1-0ade3068279b)# Proyecto 3 de Base de datos
+# Proyecto 3 de Base de datos
 
 Link del video de presentacion del proyecto: Video[https://drive.google.com/drive/folders/10LyXZA-tku7_sNY8uhTdAg_TAUUGABAF?usp=sharing]
 
