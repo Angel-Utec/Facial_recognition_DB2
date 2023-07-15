@@ -39,6 +39,11 @@ Los metodos para mitigarla son las siguientes:
 
 - Generación de datos sintéticos: En algunos casos, se pueden utilizar técnicas de generación de datos sintéticos para aumentar la densidad de datos en regiones específicas del espacio. Esto puede ayudar a contrarrestar la esparsidad de los datos y mejorar la eficiencia de la búsqueda.
 ## Experimentación
+###Tabla de tiempos
+[![Captura-de-pantalla-2023-07-14-222829.png](https://i.postimg.cc/vBWW9NYH/Captura-de-pantalla-2023-07-14-222829.png)](https://postimg.cc/mzgzWV10)
+
+###Grafico
+[![Figure-1.png](https://i.postimg.cc/76v35kyW/Figure-1.png)](https://postimg.cc/R3R6Y2h7)
 
 
 
