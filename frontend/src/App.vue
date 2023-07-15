@@ -16,9 +16,6 @@
         <router-view @logout="onLogout"></router-view>
       </div>
     </div>
-    <div id="background-gif">
-      <img src="./assets/ado_cloud.gif" alt="Background GIF" />
-    </div>
   </div>
 </template>
 

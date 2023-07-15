@@ -17,6 +17,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import face_recognition
 from models import setup_db, Imagen
+import numpy as np
 
 #Paginación
 db = SQLAlchemy()
@@ -70,25 +71,43 @@ def create_app(test_config=None):
         Imagen.query.delete()
         db.session.commit()
         imagen_res = request.files['imagen']
-        top_k = request.form['top_k']
+        top_k = int(request.form['top_k'])
         imagen = face_recognition.load_image_file(imagen_res)
         vector = face_recognition.face_encodings(imagen)
-        res = backend.knn_sequential(vector,int(top_k),backend.carpeta_salida)
-        codificaciones = tuple(vector[0])
+        res = backend.knn_sequential(vector,int(top_k),backend.carpeta_salida_seq)
         for distance, file_name in res:
-            nombre = file_name[86:-9]
-            foto_direccion = file_name[86:-4] + ".jpg"
+            nombre_archivo = file_name[18:-4]
+            nombre = file_name[18:-9]
+            foto_direccion = file_name[18:-4] + ".jpg"
             print(f"Archivo: {file_name}, Distancia: {distance}")
+            distance_res = -distance
             tipo = "knn"
-            imagen = Imagen(tipo=tipo,nombre=nombre,foto_espec=foto_direccion,distancia=str(-distance))
+            imagen = Imagen(tipo=tipo,nombre=nombre,nombre_archivo=nombre_archivo,foto_espec=foto_direccion,distancia=distance_res)
             imagen.insert()
-        res2 = backend.kntree(codificaciones)
-        res3 = backend.builiding_rtree(codificaciones)
-        #selection = Imagen.query.order_by('id').all()
-
+        res2 = backend.KNN_Ktree(vector[0],top_k)
+        for img in res2:
+            nombre_archivo_ktree = img[:-9]
+            nombre_ktree = img[:-4]
+            foto_direccion_ktree = img[:-4] + ".jpg"
+            tipo_Ktree = "Ktree"
+            imagen = Imagen(tipo=tipo_Ktree,nombre=nombre_archivo_ktree,nombre_archivo=nombre_ktree,foto_espec=foto_direccion_ktree)
+            imagen.insert()
+        res3 = backend.KNN_HighD(vector[0],top_k)
+        for file_name_High, distance_high in res3:
+            nombre_archivo_high = file_name_High[:-9]
+            nombre_high = file_name_High[:-4]
+            foto_direccion_high = file_name_High[:-4] + ".jpg"
+            tipo_high = "HighD"
+            distance_highk = float(distance_high)
+            imagen = Imagen(tipo=tipo_high,nombre=nombre_archivo_high,nombre_archivo=nombre_high,foto_espec=foto_direccion_high,distancia=distance_highk)
+            imagen.insert()
         
         return jsonify({
-            'success': True
+            'success': True,
+            # 'created': new_imagen_id,
+            # 'tipo': new_imagen_tipo,
+            # 'imagenes': current_images,
+            # 'total_posts': len(selection)
         })
         
     #Manejo de errores

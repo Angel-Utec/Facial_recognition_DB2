@@ -48,9 +48,9 @@
         Algoritmo del KNN sequential
       </h4>
       <!--horizontal scrolling cards    -->
-      <div class="row-b">
+      <div class="row-b" id="Sequential">
         <div
-          v-for="imagen in datos"
+          v-for="imagen in knnDatos"
           :key="imagen.id"
           class="card-b card sticky-action large"
         >
@@ -64,7 +64,79 @@
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4"
-              >{{ imagen.nombre
+              >{{ imagen.nombre_archivo
+              }}<i class="material-icons right">more_vert</i></span
+            >
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"
+              >Datos<i class="material-icons right">close</i></span
+            >
+            <p>Distancia: {{ imagen.distancia }}</p>
+            <p>Nombre: {{ imagen.nombre }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container section">
+      <h4>
+        Vistas de las coincidencias del mas al menos parecido usando el
+        Algoritmo del KTree
+      </h4>
+      <!--horizontal scrolling cards    -->
+      <div class="row-b" id="Ktree">
+        <div
+          v-for="imagen in ktreeDatos"
+          :key="imagen.id"
+          class="card-b card sticky-action large"
+        >
+          <div class="card-image waves-effect waves-block waves-light">
+            <img
+              class="activator"
+              :src="
+                require('@/assets/' + imagen.nombre + '/' + imagen.foto_espec)
+              "
+            />
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"
+              >{{ imagen.nombre_archivo
+              }}<i class="material-icons right">more_vert</i></span
+            >
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"
+              >Datos<i class="material-icons right">close</i></span
+            >
+            <p>Distancia: {{ imagen.distancia }}</p>
+            <p>Nombre: {{ imagen.nombre }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container section">
+      <h4>
+        Vistas de las coincidencias del mas al menos parecido usando el
+        Algoritmo del HighD
+      </h4>
+      <!--horizontal scrolling cards    -->
+      <div class="row-b" id="Sequential">
+        <div
+          v-for="imagen in highDDatos"
+          :key="imagen.id"
+          class="card-b card sticky-action large"
+        >
+          <div class="card-image waves-effect waves-block waves-light">
+            <img
+              class="activator"
+              :src="
+                require('@/assets/' + imagen.nombre + '/' + imagen.foto_espec)
+              "
+            />
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"
+              >{{ imagen.nombre_archivo
               }}<i class="material-icons right">more_vert</i></span
             >
           </div>
@@ -100,7 +172,21 @@ export default {
   async created() {
     await this.getImagenes();
   },
+  computed: {
+    knnDatos() {
+      return this.separarDatosPorTipo("knn");
+    },
+    ktreeDatos() {
+      return this.separarDatosPorTipo("Ktree");
+    },
+    highDDatos() {
+      return this.separarDatosPorTipo("HighD");
+    },
+  },
   methods: {
+    separarDatosPorTipo(tipo) {
+      return this.datos.filter((imagen) => imagen.tipo === tipo);
+    },
     async getImagenes() {
       try {
         const response = await Services.getimagenes();

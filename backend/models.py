@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime 
 
 
-database_path='postgresql://postgres:postgres@localhost:5432/BD23'
+database_path='postgresql://postgres:1@localhost:5432/BD23'
 
 #Configuracion
 db=SQLAlchemy()
@@ -22,15 +22,17 @@ class Imagen(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     tipo = db.Column(db.Text, nullable = False)
     nombre = db.Column(db.Text,nullable = False)
+    nombre_archivo = db.Column(db.Text,nullable = False)
     foto_espec = db.Column(db.Text,nullable = False)
-    distancia = db.Column(db.Text,nullable = False)
+    distancia = db.Column(db.Text,nullable = True)
 
     #Metodo que formatee el objeto a json para devolverlo a mi API y que no de errores
     def format(self):
         return {
             'id':self.id,
             'tipo': self.tipo,
-            'nombre': self.nombre,         
+            'nombre': self.nombre,
+            'nombre_archivo': self.nombre_archivo,         
             'foto_espec':self.foto_espec,
             'distancia':self.distancia
         }
