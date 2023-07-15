@@ -60,3 +60,6 @@ Los metodos para mitigarla son las siguientes:
 
 ### Grafico
 [![Figure-1.png](https://i.postimg.cc/76v35kyW/Figure-1.png)](https://postimg.cc/R3R6Y2h7)
+
+Viendo y analizando los graficos observamos que el metodo mas eficiente fue el hecho por HighD que utlizaba la libreria "Faiss", siguiendolo el hecho mediante el K-Tree y por ultimo el sequential. Todas suben conforme se 
+va aumentando los datos, pero solo en el sequential se puede lograr apreciar cambios visibles en su tiempo de ejecucion, en comparacion a las otras tecnicas las cuales se ve un mayor cambio si solo se toma en cuenta el primer y ultimo punto, ya que alli se podria apreciar un cambio. El grafico se hizo de forma logaritmica para que se pudiera apreciar esos cambios.
