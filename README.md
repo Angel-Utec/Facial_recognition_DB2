@@ -2,8 +2,6 @@
 
 Link del video de presentacion del proyecto: Video[https://drive.google.com/drive/folders/10LyXZA-tku7_sNY8uhTdAg_TAUUGABAF?usp=sharing]
 
-## Librerías utilizadas
-Las tecnicas que se utilizan son:
 ## Sequential
 En este caso no se utilizo ninguna libreria para calcular las distancias para la tecnica del sequential, ya que como su mismo nombre lo dice este busca de forma secuencial cada imagen, pero si se uso la libreria concurrent.futures para poder paralelizar y optimizar la busqueda lo cual nos favorecio bastante al momento de hacer la busqueda.
 
